@@ -26,12 +26,15 @@ export function SearchInput({ value, onChange }: Props) {
   }, []);
 
   return (
-    <div role="search">
-      <label htmlFor="product-search">Search products</label>
+    <div className="search-control" role="search">
+      <label className="search-label" htmlFor="product-search">
+        Search products
+      </label>
       <input
         ref={inputRef}
         id="product-search"
         type="text"
+        className="search"
         placeholder="Search"
         value={value}
         onChange={(event) => onChange(event.target.value)}

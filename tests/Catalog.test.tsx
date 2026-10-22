@@ -13,8 +13,11 @@ describe("Catalog page", () => {
   it("renders an accessible search input and result announcement", () => {
     const { container } = render(<Catalog />);
     const input = screen.getByRole("textbox", { name: "Search products" });
+    const label = screen.getByText("Search products", { selector: "label" });
 
     expect(input).toBeInTheDocument();
+    expect(label).toHaveAttribute("for", "product-search");
+    expect(label.compareDocumentPosition(input) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(screen.getByRole("search")).toBeInTheDocument();
     expect(screen.getByText("Showing 48 of 48 products")).toBeInTheDocument();
     expect(container.querySelector('[aria-live="polite"]')).toBeInTheDocument();
